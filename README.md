@@ -5,7 +5,7 @@
 
 ## 💻 Pré-requisitos
 
-Ter `node` instalado na sua maquina (ou servidor)
+Ter o `node v16+` instalado na maquina (ou servidor)
 
 ## 🚀 Instalando
 
