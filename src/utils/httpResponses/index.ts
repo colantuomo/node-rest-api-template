@@ -1,5 +1,10 @@
 import { Response } from 'express';
+import { StatusCode } from 'status-code-enum';
 
-export function success<T = any>(res: Response, response: T) {
-  res.status(200).json(response);
+export function statusResponse<T = any>(
+  res: Response,
+  response: T,
+  statusCode: StatusCode
+): Response<T> {
+  return res.status(statusCode).json(response);
 }
