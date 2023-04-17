@@ -1,15 +1,17 @@
 import { describe, test, expect } from 'vitest';
+import request from 'supertest';
+
 import { app } from '../../../app';
-import supertest from 'supertest';
 
 describe('Get All Users', () => {
-  test('should retrieve all users', () => {
-    supertest(app)
-      .get('/api/nao-existe')
+  test('should retrieve all users', async () => {
+    await request(app)
+      .get('/api/users/')
+      .set({ Authorization: 'Bearer fake-token' })
       .expect((res) => {
-        res.body.data.length = 2;
-        res.body.data[0].email = 'test@example.com';
-        res.body.data[1].email = 'francisco@example.com';
+        res.body.length = 3;
+        expect(res.body[0].name).toBe('Paulo');
+        expect(res.body.length).toBe(3);
       });
   });
 });
