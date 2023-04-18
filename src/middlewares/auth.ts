@@ -6,8 +6,9 @@ export function checkAuthorization(
   next: NextFunction
 ) {
   const token = req.header('Authorization');
-  if (!token) {
+  if (!token || token === undefined) {
     return res.sendStatus(401);
   }
+  res.locals.token = token;
   next();
 }
