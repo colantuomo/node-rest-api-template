@@ -1,13 +1,7 @@
-import { NextFunction, Response } from 'express';
 import { statusResponse } from '../../utils/httpResponses';
-import StatusCode from 'status-code-enum';
-import { TypedRequest, User } from '../../types';
+import { TypedRequest, TypedResponse, User } from '../../types';
 
-export function getAllUsers(
-  req: TypedRequest<{ id: string }>,
-  res: Response,
-  next: NextFunction
-) {
+export function getAllUsers(req: TypedRequest, res: TypedResponse) {
   const data: User[] = [
     {
       name: 'Paulo',
@@ -22,5 +16,5 @@ export function getAllUsers(
       age: 42,
     },
   ];
-  return statusResponse<User[]>(res, data, StatusCode.SuccessOK);
+  return statusResponse<User[]>(res, data, 'SuccessOK');
 }

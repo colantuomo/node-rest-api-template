@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
+import { Locals, Request, Response } from 'express';
 
-export interface TypedRequest<T extends {} = any> extends Request {
+export type Empty = NonNullable<unknown>;
+export interface TypedRequest<T extends Empty = Empty> extends Request {
   params: T;
 }
 
 export interface TypedResponse extends Response {
-  locals: {
-    token: string;
-  };
+  //TODO: find a way to custom type express locals
+  locals: Locals;
 }
 
 export interface User {

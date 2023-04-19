@@ -1,13 +1,13 @@
-import { NextFunction, Response } from 'express';
 import { TypedRequest, TypedResponse, User } from '../../types';
+import { statusResponse } from '../../utils/httpResponses';
 
-export function getUser(
-  req: TypedRequest,
-  res: TypedResponse,
-  next: NextFunction
-): Response<User> {
-  return res.status(200).json({
-    name: 'Paulo',
-    age: 28,
-  });
+export function getUser(req: TypedRequest<{ id: string }>, res: TypedResponse) {
+  return statusResponse<User>(
+    res,
+    {
+      name: 'Paulo',
+      age: 28,
+    },
+    'SuccessOK'
+  );
 }
